@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Live notifications</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body>
+<x-app-layout>
     <div class="flex justify-center space-x-6">
         <h1>Live notification board</h1>
 
@@ -31,14 +21,12 @@
             </thead>
             <tbody id="notification-tb">
                 @foreach ($notifications as $notification)
-                    <tr>
-                        <td>{{ $notification['key'] }}</td>
-                        <td>{{ $notification['datetime'] }}</td>
-                    </tr>
+                <tr>
+                    <td>{{ $notification['key'] }}</td>
+                    <td>{{ $notification['datetime'] }}</td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-</body>
-
-</html>
+</x-app-layout>

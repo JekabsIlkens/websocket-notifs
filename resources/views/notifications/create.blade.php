@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New notification</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body>
+<x-app-layout>
     <h1>Create a custom key</h1>
 
     <form action="{{ route('notifications.store') }}" method="POST" class="mt-6">
@@ -18,6 +8,4 @@
             <button type="submit">Create</button>
         </div>
     </form>
-</body>
-
-</html>
+</x-app-layout>
