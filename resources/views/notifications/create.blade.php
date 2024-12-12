@@ -4,24 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>New notification</title>
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <h1>Create a new notification</h1>
+    <h1>Create a custom key</h1>
 
-    <form action="{{ route('notifications.store') }}" method="POST">
+    <form action="{{ route('notifications.store') }}" method="POST" class="mt-6">
         @csrf
-
-        <div>
-            <label for="message">Message:</label>
-            <input id="message" name="message" type="text" required />
+        <div class="py-6 fade">
+            <input id="key" name="key" type="text" required />
+            <button type="submit">Create</button>
         </div>
-
-        <button type="submit">Submit</button>
     </form>
 </body>
 

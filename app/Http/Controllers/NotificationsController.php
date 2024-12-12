@@ -20,7 +20,7 @@ class NotificationsController
     {
         event(new NewNotifications(
             rand(1, 999), 
-            $request->input('message'), 
+            $request->input('key'), 
             Carbon::now()->toDateTimeString()
         ));
 

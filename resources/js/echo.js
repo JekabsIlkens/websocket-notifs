@@ -28,15 +28,15 @@ function updateNotificationsTable(events) {
     events.forEach(event => {
         const row = document.createElement('tr');
         const numberCell = document.createElement('td');
-        const messageCell = document.createElement('td');
+        const keyCell = document.createElement('td');
         const datetimeCell = document.createElement('td');
         
         numberCell.textContent = event.number;
-        messageCell.textContent = event.message;
+        keyCell.textContent = event.key;
         datetimeCell.textContent = event.datetime;
         
         row.appendChild(numberCell);
-        row.appendChild(messageCell);
+        row.appendChild(keyCell);
         row.appendChild(datetimeCell);
         
         tableBody.appendChild(row);
