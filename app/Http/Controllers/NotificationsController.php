@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Events\NewNotifications;
-use Carbon\Carbon;
+use App\Services\NotificationsService;
 
 class NotificationsController
 {
+    protected $notificationsService;
+
+    public function __construct(NotificationsService $notificationsService)
+    {
+        $this->notificationsService = $notificationsService;
+    }
+
     public function index() 
     {
         return view('notifications.index');
@@ -20,20 +26,16 @@ class NotificationsController
 
     public function store(Request $request) 
     {
-        if($request->input('key'))
+        $key = $request->input('key');
+
+        if($key)
         {
-            event(new NewNotifications(
-                $request->input('key'),
-                Carbon::now()->toDateTimeString()
-            ));
+            $this->notificationsService->createCustomKey($key);
 
             return redirect()->route('notifications.create');
         }
 
-        event(new NewNotifications(
-            bin2hex(random_bytes(16)),
-            Carbon::now()->toDateTimeString()
-        ));
+        $this->notificationsService->createRandomKey();
 
         return response()->noContent();
     }
