@@ -5,7 +5,7 @@ if not exist .env (
     copy .env.example .env
     echo "File .env created."
 ) else (
-    echo "File .env already exists, skipping copy..."
+    echo "File .env already exists, skipping copy."
 )
 
 echo "Installing PHP dependencies..."
