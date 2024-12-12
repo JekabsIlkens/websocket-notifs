@@ -12,18 +12,29 @@ class NotificationsController
     {
         return view('notifications.index');
     }
+
     public function create() 
     {
         return view('notifications.create');
     }
+
     public function store(Request $request) 
     {
+        if($request->input('key'))
+        {
+            event(new NewNotifications(
+                $request->input('key'),
+                Carbon::now()->toDateTimeString()
+            ));
+
+            return redirect()->route('notifications.create');
+        }
+
         event(new NewNotifications(
-            rand(1, 999), 
-            $request->input('key'), 
+            bin2hex(random_bytes(16)),
             Carbon::now()->toDateTimeString()
         ));
 
-        return redirect()->route('notifications.create');
+        return response()->noContent();
     }
 }

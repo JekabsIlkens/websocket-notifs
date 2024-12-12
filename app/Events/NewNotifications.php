@@ -12,13 +12,11 @@ class NewNotifications implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public int $number;
     public string $key;
     public string $datetime;
 
-    public function __construct(int $number, string $key, string $datetime)
+    public function __construct(string $key, string $datetime)
     {
-        $this->number = $number;
         $this->key = $key;
         $this->datetime = $datetime;
     }
@@ -30,10 +28,11 @@ class NewNotifications implements ShouldBroadcastNow
 
     public function broadcastWith()
     {
-        return ['data' => [
-            'number' => $this->number,
-            'key' => $this->key,
-            'datetime' => $this->datetime,
-        ]];
+        return [
+            'data' => [
+                'key' => $this->key,
+                'datetime' => $this->datetime,
+            ],
+        ];
     }
 }

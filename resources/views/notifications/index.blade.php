@@ -25,7 +25,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Number</th>
                     <th>Key</th>
                     <th>Datetime</th>
                 </tr>
