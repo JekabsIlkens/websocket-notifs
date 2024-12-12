@@ -13,30 +13,23 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-let notificationEvents = [];
-
-window.Echo.channel("new-notifications")
-    .listen("NewNotifications", (event) => {
-        notificationEvents.push(event.data);
-        updateNotificationsTable(notificationEvents);
-    });
-
-function updateNotificationsTable(events) {
+function updateNotificationsTable(eventData) {
     const tableBody = document.getElementById("notification-tb");
-    tableBody.innerHTML = '';
 
-    events.forEach(event => {
-        const row = document.createElement('tr');
+    const row = document.createElement('tr');
 
-        const keyCell = document.createElement('td');
-        const datetimeCell = document.createElement('td');
+    const keyCell = document.createElement('td');
+    const datetimeCell = document.createElement('td');
         
-        keyCell.textContent = event.key;
-        datetimeCell.textContent = event.datetime;
+    keyCell.textContent = eventData.key;
+    datetimeCell.textContent = eventData.datetime;
         
-        row.appendChild(keyCell);
-        row.appendChild(datetimeCell);
+    row.appendChild(keyCell);
+    row.appendChild(datetimeCell);
         
-        tableBody.appendChild(row);
-    });
+    tableBody.insertBefore(row, tableBody.firstChild);
 }
+
+window.Echo.channel("new-notifications").listen("NewNotifications", (event) => {
+    updateNotificationsTable(event.data);
+});

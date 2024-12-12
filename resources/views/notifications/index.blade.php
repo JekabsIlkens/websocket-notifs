@@ -29,7 +29,14 @@
                     <th>Datetime</th>
                 </tr>
             </thead>
-            <tbody id="notification-tb"></tbody>
+            <tbody id="notification-tb">
+                @foreach ($notifications as $notification)
+                    <tr>
+                        <td>{{ $notification['key'] }}</td>
+                        <td>{{ $notification['datetime'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </body>

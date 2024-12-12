@@ -175,6 +175,9 @@ return [
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_NOTIFICATIONS_DB', '2'),
+            'options' => [
+                'prefix' => 'websocket_',
+            ],
         ],
 
     ],

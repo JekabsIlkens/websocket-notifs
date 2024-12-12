@@ -16,7 +16,9 @@ class NotificationsController
 
     public function index() 
     {
-        return view('notifications.index');
+        $notifications = $this->notificationsService->getAllNotifications();
+
+        return view('notifications.index', ['notifications' => $notifications]);
     }
 
     public function create() 

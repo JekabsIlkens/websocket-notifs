@@ -8,6 +8,17 @@ use App\Events\NewNotifications;
 
 class NotificationsService
 {
+    public function getAllNotifications(): array
+    {
+        $notifications = Redis::connection('notifications')->lrange('notifications', 0, -1);
+
+        $notifications = array_map(function ($notification) {
+            return json_decode($notification, true);
+        }, $notifications);
+
+        return $notifications;
+    }
+    
     public function createCustomKey(string $customKey): void
     {
         $datetime = Carbon::now()->toDateTimeString();
