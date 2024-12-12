@@ -6,6 +6,18 @@
 
 ## Functionality preview:
 
+Using an incognito tab (on the right side), I am simulating actions on the server. The websocket listens for these events and displays them in real time (on the left side).
+In Devtools/Network/WS we can see a successful subscription to the new-notifications channel and the contents of a received event.
+<table>
+  <tr>
+    <td><img src='https://raw.githubusercontent.com/JekabsIlkens/websocket-notifs/master/public/images/ws_preview.gif' alt='websocket_preview' width="500px"/></td>
+    <td><img src='https://raw.githubusercontent.com/JekabsIlkens/websocket-notifs/master/public/images/custom_key.png' alt='websocket_custom' width="600px"/></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src='https://raw.githubusercontent.com/JekabsIlkens/websocket-notifs/master/public/images/ws_devtools.png' alt='websocket_devtools' width="1200px"/></td>
+  </tr>
+</table>
+
 ## Installation instructions:
 
 ### Ensure you have the following tools:
