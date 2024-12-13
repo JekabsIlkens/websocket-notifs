@@ -1,9 +1,10 @@
 # WebSocket notifications (proof of concept)
 
 ## Table of contents:
-**[Functionality preview](#functionality-preview)**<br/>
-**[Proof of concept analysis](#proof-of-concept-analysis)**<br/>
-**[Installation instructions](#installation-instructions)**<br/>
+- **[Functionality preview](#functionality-preview)**<br/>
+- **[Project description](#project-description)**<br/>
+- **[Potential improvements](#potential-improvements)**<br/>
+- **[Installation instructions](#installation-instructions)**<br/>
 
 ## Functionality preview:
 
@@ -19,38 +20,35 @@ In Devtools/Network/WS we can see a successful subscription to the new-notificat
   </tr>
 </table>
 
-## Proof of concept analysis:
+## Project description:
 
-#### Problem Statement
+### Problem Statement
 The project addresses the need for real-time data delivery from the server to the browser.
 Traditional HTTP-based communication is not sufficient for instantaneous updates as it relies on request-response cycles.
 Leveraging WebSockets we can enable seamless, bi-directional communication, which allows the server to push data directly to the client.
 This is ideal for applications requiring live updates, such as live feeds, or real-time notifications. <br/>
 
-#### Success Metrics
+### Success Metrics
 Demonstrate a functional client-server WebSocket notification system with a simple single channel and event implementation. <br/>
 - Clients receive real-time updates pushed from the server.
 - Data is displayed accurately and instantaneously in the browser.
 
-#### Implementation
-- **Server Side**: Implemented using Laravel 11 and Laravel Reverb to broadcast data to connected clients via WebSockets.
-- **Client Side**: Implemented using Laravel Echo and JavaScript to listen for events, and display the received data.
-- **Data Storage**: Implemented using Redis for easy and simple session and new notification storage.
+### Implementation
+- **Server Side**: Laravel 11 and Reverb to broadcast data to connected clients via WebSockets.
+- **Client Side**: Laravel Echo and JavaScript to listen for events, and display the received data.
+- **Data Storage**: Redis for easy and simple session and new notification storage.
 
-#### Potential Improvements
+## Potential improvements:
 
-**The current setup** is directly firing an event after inserting data into Redis. 
-This ensures that the WebSocket is triggered immediately after the data is added.
-Simple implementation with an immediate response to the insert, so users see notifications 
-as soon as the data is inserted, but slightly less scalable in case of heavy traffic. <br/>
+### The current setup:
+Directly firing an event after inserting data into Redis. This ensures that the WebSocket is triggered immediately after the data is added.
+Simple implementation with an immediate response to the insert, so users see notifications as soon as the data is inserted, but slightly less scalable in case of heavy traffic. <br/>
 
-**Alternative approach** would be to listen for changes in Redis through Pub/Sub and trigger 
-an event when new data is inserted. This approach is more scalable, but introduces more complexity. <br/>
-
-Considering that this is a simple proof of concept to demonstrate real-time data via WebSockets,
-the current implementation is simple and sufficient for the goal.
-When implementing into a real system we would naturally anticipate heavy traffic and the need
-for better decoupling of the event system with Redis Pub/Sub which would allow events to be triggered asynchronously.
+### Alternative approach:
+Listen for changes in Redis through Pub/Sub and trigger an event when new data is inserted. 
+This approach is more scalable, but introduces more complexity.
+Considering that this is a simple proof of concept to demonstrate real-time data via WebSockets, the current implementation is simple and sufficient for the goal.
+When implementing into a real system we would naturally anticipate heavy traffic and the need for better decoupling of the event system with Redis Pub/Sub which would allow events to be triggered asynchronously.
 
 ## Installation instructions:
 
